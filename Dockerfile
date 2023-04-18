@@ -1,5 +1,5 @@
 FROM python:3
-ENV PYTHONBURRERED 1
+ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code/
