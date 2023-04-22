@@ -1,22 +1,26 @@
 version: '3'
-
 services:
-  web:
-    build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
-    volumes:
+ web:
+   container_name: app
+   build: .
+   command: python3 manage.py runserver 0.0.0.0:8000
+   working_dir: /code
+   ports:
+     - 8000:8000
+   volumes:
      - .:/code
-    ports:
-     - "8000:8000"
-    depends_on:
-      - db
-  db:
-    image: postgres
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=password
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-volumes:
-  postgres_data:
+   depends_on:
+     - db
+ db:
+   container_name: db
+   image: mysql
+   restart: always
+   environment:
+     MYSQL_DATABASE: django
+     MYSQL_USER: django
+     MYSQL_PASSWORD: password
+     MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+   volumes:
+     - ./mysql:/var/lib/mysql
+   ports:
+     - 3306:3306
