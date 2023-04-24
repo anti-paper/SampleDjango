@@ -17,8 +17,7 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: django
-      MYSQL_USER: django
-      MYSQL_PASSWORD: password
+      MYSQL_USER: root
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
       - ./mysql:/var/lib/mysql
@@ -28,8 +27,7 @@ services:
     container_name: pma
     image: phpmyadmin/phpmyadmin
     environment:
-      PMA_USER: django
-      PMA_PASSWORD: password
+      PMA_USER: root
       PMA_HOST: db
     ports:
       - 8080:80
