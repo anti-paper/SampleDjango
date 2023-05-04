@@ -17,7 +17,8 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: django
-      MYSQL_USER: root
+      MYSQL_USER: django
+      MYSQL_PASSWORD: password
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
       - ./mysql:/var/lib/mysql
