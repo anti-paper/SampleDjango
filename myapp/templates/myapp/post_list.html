@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>投稿一覧</h1>
+    <div class="table">
+        <div class="tr">
+            <span class="th">タイトル</span>
+            <span class="th">投稿内容</span>
+        </div>
+        {% for post in object_list %}
+            <div class="tr">
+                <a href="{% url 'myapp:detail' post.id %}">
+                    <span class="td">{{ post.title }}</span>
+                    <span class="td">{{ post.content }}</span>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'myapp:create' %}">新規投稿</a>
+    {% endif %}
+{% endblock %}

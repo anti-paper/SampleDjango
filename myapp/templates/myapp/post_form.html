@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>{{ post|yesno:'投稿内容編集, 新規投稿' }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{{ post|yesno:'投稿内容更新, 新規投稿' }}</button>
+    </form>
+
+    <div>
+        {% if post %}
+            <a href="{% url 'myapp:detail' post.id %}">&lt; 戻る</a>
+        {% else %}
+            <a href="{% url 'myapp:index' %}">&lt; 戻る</a>
+        {% endif %}
+    </div>
+{% endblock %}

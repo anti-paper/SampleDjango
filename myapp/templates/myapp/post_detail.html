@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>投稿詳細</h1>
+    <div class="table">
+        <div class="tr">
+            <span class="td">ID</span>
+            <span class="td">{{ post.id }}</span>
+        </div>
+        <div class="tr">
+            <span class="td">タイトル</span>
+            <span class="td">{{ post.title }}</span>
+        </div>
+        <div class="tr">
+            <span class="td">投稿内容</span>
+            <span class="td">{{ post.content }}</span>
+        </div>
+        <div class="tr">
+            <span class="td">投稿者</span>
+            <span class="td">{{ post.author }}</span>
+        </div>
+        <div class="tr">
+            <span class="td">投稿日</span>
+            <span class="td">{{ post.created_at }}</span>
+        </div>
+        <div class="tr">
+            <span class="td">更新日</span>
+            <span class="td">{{ post.updated_at }}</span>
+        </div>
+    </div>
+
+    <div>
+        <a href="{% url 'myapp:index' %}">一覧に戻る</a>
+        {% if post.author == request.user %}
+            | <a href="{% url 'myapp:update' post.id %}">投稿内容変更</a>
+            | <a href="{% url 'myapp:delete' post.id %}">投稿削除</a>
+        {% endif %}
+    </div>
+{% endblock %}

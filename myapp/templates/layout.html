@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'myapp:index' %}">投稿一覧</a>
+        <ul>
+            {% if user.is_authenticated %}
+                <li>
+                    <span>{{ user }}</span>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">ログアウト</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'login' %}">ログイン</a>
+                </li>
+                <li>
+                    <a href="{% url 'accounts:signup' %}">サインアップ</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
